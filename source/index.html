@@ -1,0 +1,41 @@
+---
+layout: default
+title: Home
+generator: pagination
+pagination:
+    max_per_page: 5
+---
+{% for post in page.pagination.items %}
+    <article>
+        <header>
+            <h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
+            <span class="date">{{ post.date|date('M dS, Y') }}</span>
+        </header>
+        <div>
+          
+        {% set break_array = post.blocks.content|split('<!-- more -->', 2) %}
+      
+        {{ break_array[0]|raw }}
+
+        {% if break_array|length > 1 %}
+        <p>
+            <a href="{{ site.url }}{{ post.url }}">
+                Read more
+            </a>
+        </p>
+        {% endif %}
+           
+        </div>
+    </article>
+{% endfor %}
+
+{% if page.pagination.previous_page or page.pagination.next_page %}
+    <div class="nav-container"> 
+        {% if page.pagination.previous_page %}
+        <a href="{{ site.url }}{{ page.pagination.previous_page.url }}" class="right">Newer Posts</a>
+        {% endif %}
+        {% if page.pagination.next_page %}
+        <a href="{{ site.url }}{{ page.pagination.next_page.url }}" class="left">Older Posts</a>
+        {% endif %}
+    </div>
+{% endif %}

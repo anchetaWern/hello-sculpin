@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{{ page.title }}{% endblock %} &mdash; {{ site.title }} &mdash; {{ site.subtitle }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picnic/4.1.2/picnic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picnic/4.1.2/plugins.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/solarized-dark.min.css">
+    <link href="{{ site.url }}/css/style.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <header>
+        <nav>
+          <a href="/" class="brand">
+            <img class="logo" src="{{ site.url }}/images/jackson/76x76.png" />
+            <span>{{ site.title }}</span>
+          </a>
+
+          <input id="bmenub" type="checkbox" class="show">
+          <label for="bmenub" class="burger pseudo button">menu</label>
+
+          <div class="menu">
+            <a href="{{ site.url }}/blog">Archives</a>
+            <a href="{{ site.url }}/about">About</a>
+          </div>
+        </nav>
+    </header>
+
+    <div id="wrapper">    
+        <main>
+        {% block content_wrapper %}
+            {% block content %}{% endblock %}
+        {% endblock %}     
+        </main>
+            
+        <footer class="container">
+            &copy; {{ "now"|date("Y") }} {{ site.title }}
+        </footer>
+    </div>
+</body>
+</html>

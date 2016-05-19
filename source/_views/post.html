@@ -1,0 +1,21 @@
+{% extends "default" %}
+
+{% block content_wrapper %}
+    <article>
+        <header>
+            <h2>{{ page.title }}</h2>
+            <span class="date">{{ post.date|date('M dS, Y') }}</span>
+        </header>
+        <div class="contents">
+            {{ page.blocks.content|raw }}
+        </div>
+        {% if page.tags %}
+            <p class="tags">
+            Tags:
+            {% for tag in page.tags %}
+            <a href="{{ site.url }}/blog/tags/{{ tag|url_encode(true) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+            </p>
+        {% endif %}
+    </article>
+{% endblock %}
